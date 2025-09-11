@@ -44,13 +44,13 @@ if uploaded_file:
         if 'original_df' not in st.session_state:
             st.session_state.original_df = df.copy()
 
-        st.success("✅ Dataset loaded successfully!")
+        st.success(" Dataset loaded successfully!")
         
         # Create tabs for better organization
-        tab1, tab2, tab3, tab4 = st.tabs(["📋 Data Overview", "🔍 Data Quality", "📊 Visualizations", "🤖 AI Analysis"])
+        tab1, tab2, tab3, tab4 = st.tabs([" Data Overview", " Data Quality", " Visualizations", " AI Analysis"])
         
         with tab1:
-            st.subheader("📌 Dataset Overview")
+            st.subheader(" Dataset Overview")
             col1, col2, col3 = st.columns(3)
             with col1:
                 st.metric("Rows", df.shape[0])
@@ -73,7 +73,7 @@ if uploaded_file:
             st.dataframe(col_info, use_container_width=True)
 
         with tab2:
-            st.subheader("🛑 Data Quality Report")
+            st.subheader(" Data Quality Report")
             
             # Missing values visualization
             if df.isnull().sum().sum() > 0:
@@ -95,14 +95,14 @@ if uploaded_file:
             # Duplicate analysis
             duplicates = df.duplicated().sum()
             if duplicates > 0:
-                st.warning(f"⚠️ Found {duplicates} duplicate rows ({duplicates/len(df)*100:.2f}%)")
+                st.warning(f"⚠ Found {duplicates} duplicate rows ({duplicates/len(df)*100:.2f}%)")
             else:
                 st.success("🎉 No duplicate rows found!")
 
             # Correlation heatmap for numeric columns
             numeric_df = df.select_dtypes(include=[np.number])
             if len(numeric_df.columns) > 1:
-                st.subheader("📈 Correlation Analysis")
+                st.subheader(" Correlation Analysis")
                 fig, ax = plt.subplots(figsize=(10, 6))
                 correlation_matrix = numeric_df.corr()
                 sns.heatmap(correlation_matrix, annot=True, cmap="RdYlBu_r", center=0, ax=ax)
@@ -121,7 +121,7 @@ if uploaded_file:
                             })
                 
                 if high_corr:
-                    st.warning("🔥 High Correlations Detected (|r| > 0.7):")
+                    st.warning(" High Correlations Detected (|r| > 0.7):")
                     st.dataframe(pd.DataFrame(high_corr), use_container_width=True)
 
         with tab3:
@@ -154,7 +154,7 @@ if uploaded_file:
                     st.plotly_chart(fig, use_container_width=True)
 
             # Multi-column analysis
-            st.subheader("🔀 Multi-Column Analysis")
+            st.subheader(" Multi-Column Analysis")
             numeric_columns = df.select_dtypes(include=[np.number]).columns.tolist()
             
             if len(numeric_columns) >= 2:
@@ -172,20 +172,20 @@ if uploaded_file:
             # ----------------------------
             # Interactive Data Cleaning
             # ----------------------------
-            st.subheader("🧹 Data Cleaning")
+            st.subheader(" Data Cleaning")
             
-            if st.button("🧹 Apply Selected Cleaning Operations", type="primary"):
+            if st.button(" Apply Selected Cleaning Operations", type="primary"):
                 cleaned_df = df.copy()
                 cleaning_log = []
 
-                with st.spinner("⚡ Cleaning dataset..."):
+                with st.spinner(" Cleaning dataset..."):
                     # Remove duplicates
                     if "Remove Duplicates" in cleaning_options:
                         initial_shape = cleaned_df.shape[0]
                         cleaned_df.drop_duplicates(inplace=True)
                         removed = initial_shape - cleaned_df.shape[0]
                         if removed > 0:
-                            cleaning_log.append(f"✅ Removed {removed} duplicate rows")
+                            cleaning_log.append(f" Removed {removed} duplicate rows")
 
                     # Fix data types
                     if "Fix Data Types" in cleaning_options:
@@ -195,7 +195,7 @@ if uploaded_file:
                                 try:
                                     pd.to_datetime(cleaned_df[c])
                                     cleaned_df[c] = pd.to_datetime(cleaned_df[c])
-                                    cleaning_log.append(f"✅ Converted {c} to datetime")
+                                    cleaning_log.append(f" Converted {c} to datetime")
                                     continue
                                 except:
                                     pass
@@ -204,7 +204,7 @@ if uploaded_file:
                                 try:
                                     pd.to_numeric(cleaned_df[c])
                                     cleaned_df[c] = pd.to_numeric(cleaned_df[c])
-                                    cleaning_log.append(f"✅ Converted {c} to numeric")
+                                    cleaning_log.append(f" Converted {c} to numeric")
                                 except:
                                     pass
 
@@ -215,12 +215,12 @@ if uploaded_file:
                             if missing_count > 0:
                                 if cleaned_df[col].dtype in ['int64', 'float64']:
                                     cleaned_df[col].fillna(cleaned_df[col].median(), inplace=True)
-                                    cleaning_log.append(f"✅ Filled {missing_count} missing values in {col} with median")
+                                    cleaning_log.append(f" Filled {missing_count} missing values in {col} with median")
                                 else:
                                     mode_val = cleaned_df[col].mode()
                                     if len(mode_val) > 0:
                                         cleaned_df[col].fillna(mode_val[0], inplace=True)
-                                        cleaning_log.append(f"✅ Filled {missing_count} missing values in {col} with mode")
+                                        cleaning_log.append(f" Filled {missing_count} missing values in {col} with mode")
 
                     # Outlier treatment
                     if "Cap Outliers" in cleaning_options:
@@ -235,7 +235,7 @@ if uploaded_file:
                             outliers_count = ((cleaned_df[col] < lower) | (cleaned_df[col] > upper)).sum()
                             if outliers_count > 0:
                                 cleaned_df[col] = cleaned_df[col].clip(lower, upper)
-                                cleaning_log.append(f"✅ Capped {outliers_count} outliers in {col}")
+                                cleaning_log.append(f" Capped {outliers_count} outliers in {col}")
 
                     # Normalize numeric data
                     if "Normalize Data" in cleaning_options:
@@ -243,12 +243,12 @@ if uploaded_file:
                         numeric_cols = cleaned_df.select_dtypes(include=[np.number]).columns
                         if len(numeric_cols) > 0:
                             cleaned_df[numeric_cols] = scaler.fit_transform(cleaned_df[numeric_cols])
-                            cleaning_log.append(f"✅ Normalized {len(numeric_cols)} numeric columns")
+                            cleaning_log.append(f" Normalized {len(numeric_cols)} numeric columns")
 
                 # Update the main dataframe
                 df = cleaned_df
                 
-                st.success("✅ Data cleaning completed!")
+                st.success(" Data cleaning completed!")
                 
                 # Show cleaning log
                 if cleaning_log:
@@ -274,13 +274,13 @@ if uploaded_file:
             # ----------------------------
             # Download Options
             # ----------------------------
-            st.subheader("📥 Download Cleaned Data")
+            st.subheader(" Download Cleaned Data")
             col1, col2 = st.columns(2)
             
             with col1:
                 csv = df.to_csv(index=False).encode("utf-8")
                 st.download_button(
-                    label="📄 Download as CSV",
+                    label=" Download as CSV",
                     data=csv,
                     file_name="cleaned_dataset.csv",
                     mime="text/csv",
@@ -294,7 +294,7 @@ if uploaded_file:
                 excel_data = excel_buffer.getvalue()
 
                 st.download_button(
-                    label="📊 Download as Excel",
+                    label=" Download as Excel",
                     data=excel_data,
                     file_name="cleaned_dataset.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -304,10 +304,10 @@ if uploaded_file:
             # ----------------------------
             # AI Query System (Groq LLM)
             # ----------------------------
-            st.subheader("🤖 Ask AI about your Data")
+            st.subheader(" Ask AI about your Data")
 
             # Query examples
-            with st.expander("💡 Example Questions"):
+            with st.expander(" Example Questions"):
                 st.write("""
                 - "What is the average Age?"
                 - "Show me the distribution of [column_name]"
@@ -336,19 +336,19 @@ if uploaded_file:
                         handle_parsing_errors=True
                     )
                     
-                    with st.spinner("🤖 Analyzing your query..."):
+                    with st.spinner(" Analyzing your query..."):
                         response = agent.run(query)
                     
-                    st.success("✅ AI Response:")
+                    st.success(" AI Response:")
                     st.write(response)
                     
                 except Exception as e:
-                    st.error(f"❌ Error: {e}")
-                    st.info("💡 Try rephrasing your question or check if the column names are correct.")
+                    st.error(f" Error: {e}")
+                    st.info(" Try rephrasing your question or check if the column names are correct.")
 
     except Exception as e:
-        st.error(f"❌ Error loading dataset: {str(e)}")
-        st.info("💡 Please check if your file is properly formatted and try again.")
+        st.error(f" Error loading dataset: {str(e)}")
+        st.info(" Please check if your file is properly formatted and try again.")
 
 else:
     # Landing page
@@ -378,4 +378,5 @@ else:
 
 # Footer
 st.markdown("---")
+
 st.markdown("*Built with ❤️ using Streamlit, Pandas, Groq AI, and LangChain*")
