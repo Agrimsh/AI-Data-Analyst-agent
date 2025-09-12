@@ -49,3 +49,5 @@ streamlit run app.py
 
 The app will start at 👉 http://localhost:8501
 
+Live working link:https://ai-data-analyst-agent-nk734wznzewtxzncszkkja.streamlit.app
+
