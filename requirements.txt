@@ -5,8 +5,10 @@ scikit-learn
 matplotlib
 seaborn
 plotly
+tabulate
 python-dotenv
 xlsxwriter
 langchain
 langchain-groq
 langchain-experimental
+
