@@ -317,7 +317,7 @@ if uploaded_file:
                 - "What patterns do you see in the data?"
                 """)
 
-            query = st.text_input("💬 Type your question (e.g., 'What is the average Age?')")
+            query = st.text_input(" Type your question (e.g., 'What is the average Age?')")
 
             if query:
                 try:
@@ -352,23 +352,23 @@ if uploaded_file:
 else:
     # Landing page
     st.markdown("""
-    ## 🚀 Welcome to AI Data Analyst Agent!
+     🚀 Welcome to AI Data Analyst Agent!
     
     This powerful tool helps you:
     
-    - 📊 **Analyze** your data with interactive visualizations
-    - 🧹 **Clean** your data automatically with customizable options
-    - 🔍 **Explore** data quality issues and patterns
-    - 🤖 **Query** your data using natural language with AI
+    - 📊 Analyze your data with interactive visualizations
+    - 🧹 Clean your data automatically with customizable options
+    - 🔍 Explore data quality issues and patterns
+    - 🤖 Query your data using natural language with AI
     
-    ### 📋 Instructions:
+     📋 Instructions:
     1. Upload your CSV or Excel file using the uploader above
     2. Explore your data in the different tabs
     3. Clean your data with customizable cleaning options
     4. Ask questions about your data using natural language
     5. Download your cleaned dataset
     
-    ### 📁 Supported File Formats:
+     📁 Supported File Formats:
     - CSV files (.csv)
     - Excel files (.xlsx)
     
@@ -378,5 +378,6 @@ else:
 # Footer
 st.markdown("---")
 
-st.markdown("*Built with ❤️ using Streamlit, Pandas, Groq AI, and LangChain*")
+st.markdown("*Built with using Streamlit, Pandas, Groq AI, and LangChain*")
+
 
