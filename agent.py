@@ -11,8 +11,7 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_experimental.agents import create_pandas_dataframe_agent
 
-load_dotenv()
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 # ----------------------------
 # Streamlit App Configuration
@@ -380,3 +379,4 @@ else:
 st.markdown("---")
 
 st.markdown("*Built with ❤️ using Streamlit, Pandas, Groq AI, and LangChain*")
+
