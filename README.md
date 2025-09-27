@@ -1,20 +1,20 @@
-📊 Streamlit Data Cleaner & AI Analyst
+ Streamlit Data Cleaner & AI Analyst
 
 An interactive data cleaning, visualization, and AI-powered analysis tool built with Streamlit.
 Upload your dataset, clean it, explore insights visually, and ask questions in natural language using Groq’s LLaMA-3.3-70B model.
 
-✨ Features
+ Features
 
-✅ Smart Upload & Preview – Upload CSV/Excel and preview before cleaning
-✅ Data Cleaning – Remove missing values, duplicates, normalize column names
-✅ Data Quality Reports – Missing values, duplicates, correlations, high-correlation warnings
-✅ Interactive Visualizations – Histograms, box plots, scatter plots, correlation heatmaps
-✅ AI-Powered Queries – Ask questions about your dataset in plain English
-✅ Download Processed Data – Export cleaned data as CSV or Excel
-✅ Customizable Sidebar – Control cleaning options before applying
-✅ Landing Page – Friendly instructions when no dataset is uploaded
+ Smart Upload & Preview – Upload CSV/Excel and preview before cleaning
+ Data Cleaning – Remove missing values, duplicates, normalize column names
+ Data Quality Reports – Missing values, duplicates, correlations, high-correlation warnings
+ Interactive Visualizations – Histograms, box plots, scatter plots, correlation heatmaps
+ AI-Powered Queries – Ask questions about your dataset in plain English
+ Download Processed Data – Export cleaned data as CSV or Excel
+ Customizable Sidebar – Control cleaning options before applying
+ Landing Page – Friendly instructions when no dataset is uploaded
 
-🛠️ Tech Stack
+ Tech Stack
 
 Frontend: Streamlit
 
@@ -26,7 +26,7 @@ AI Integration: LangChain + Groq API (LLaMA-3.3-70B)
 
 Export: CSV + Excel (XlsxWriter)
 
-📦 Installation
+ Installation
 
 Clone the repo:
 
@@ -43,11 +43,11 @@ Add your Groq API key to a .env file:
 
 GROQ_API_KEY=your_api_key_here
 
-🚀 Run Locally
+ Run Locally
 streamlit run app.py
 
 
-The app will start at 👉 http://localhost:8501
+The app will start at  http://localhost:8501
 
 Live working link:https://ai-data-analyst-agent-nk734wznzewtxzncszkkja.streamlit.app
 
